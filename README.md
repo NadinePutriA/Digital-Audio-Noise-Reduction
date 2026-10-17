@@ -1,68 +1,85 @@
 # Digital-Audio-Noise-Reduction
 Analisis dan implementasi filter digital FIR (Hamming dan Blackman) serta IIR (Butterworth dan Chebyshev) untuk mengurangi noise pada sinyal audio menggunakan Python.
 
+# Analisis dan Implementasi Filter Digital untuk Noise Reduction pada Sinyal Audio
 
-**Analisis dan Implementasi Filter Digital FIR dan IIR untuk Noise Reduction pada Sinyal Audio**
+## Deskripsi Proyek
 
-Proyek Pengolahan Sinyal Digital yang membahas penerapan dan perbandingan filter digital FIR (Finite Impulse Response) dan IIR (Infinite Impulse Response) untuk mengurangi noise pada sinyal audio menggunakan Python.
+Repository ini berisi implementasi filter digital untuk mengurangi noise pada sinyal audio menggunakan metode Finite Impulse Response (FIR) dan Infinite Impulse Response (IIR). Proyek ini membandingkan filter FIR dengan window Hamming dan Blackman serta filter IIR Butterworth dan Chebyshev.
 
-**Deskripsi Proyek**
+Proses pengolahan meliputi analisis frekuensi dominan, penambahan noise buatan, perancangan filter low-pass dan band-pass, filtering sinyal audio, serta evaluasi hasil menggunakan metrik Signal-to-Noise Ratio (SNR), Root Mean Square (RMS), dan spectral centroid. Analisis juga dilengkapi dengan visualisasi sinyal pada domain waktu, Fast Fourier Transform (FFT), serta respons frekuensi filter.
 
-Sinyal audio dapat mengandung noise yang memengaruhi kualitas suara. Salah satu cara untuk mengurangi noise tersebut adalah dengan menerapkan filter digital yang dirancang untuk melewatkan atau meredam komponen frekuensi tertentu.
-
-Pada proyek ini, dilakukan implementasi beberapa metode filter digital, yaitu FIR dengan window Hamming dan Blackman serta IIR dengan metode Butterworth dan Chebyshev. Setiap metode diuji menggunakan filter low-pass dan band-pass untuk mengamati perubahan sinyal audio sebelum dan sesudah proses filtering.
-
-Hasilnya dianalisis melalui visualisasi sinyal pada domain waktu, analisis Fast Fourier Transform (FFT), respons frekuensi, serta pengukuran beberapa parameter sinyal.
-
-**Tujuan**
+## Tujuan
 
 - Merancang dan mengimplementasikan filter FIR menggunakan window Hamming dan Blackman.
-- Merancang dan mengimplementasikan filter IIR menggunakan metode Butterworth dan Chebyshev.
-- Membandingkan karakteristik filter melalui respons magnitude dan fase.
-- Menganalisis perubahan sinyal audio sebelum dan sesudah filtering.
-- Mengevaluasi hasil filtering menggunakan SNR, RMS, spectral centroid, dan FFT.
-- Membandingkan kualitas hasil audio melalui analisis numerik dan pendengaran.
+- Merancang filter IIR menggunakan Butterworth dan Chebyshev.
+- Membandingkan karakteristik filter low-pass dan band-pass.
+- Menganalisis respons magnitudo dan fase dari masing-masing filter.
+- Mengevaluasi perubahan kualitas sinyal melalui SNR, RMS, spectral centroid, FFT, dan visualisasi domain waktu.
+- Membandingkan hasil filtering secara objektif dan melalui pendengaran audio.
 
-**Metode yang Digunakan**
+## Metodologi
 
-1. Filter FIR
-Filter FIR diimplementasikan menggunakan metode windowing dengan dua jenis window:
-- Hamming Window: digunakan dalam perancangan filter FIR untuk membentuk respons frekuensi sesuai kebutuhan.
-- Blackman Window: digunakan sebagai alternatif window untuk dibandingkan dengan Hamming.
+### 1. Memuat Sinyal Audio
+Membaca file audio menggunakan Python, memeriksa sampling rate, dan mengubah sinyal stereo menjadi mono apabila diperlukan.
 
-2. Filter IIR
-- Filter IIR diimplementasikan menggunakan dua metode:
-- Butterworth: digunakan untuk merancang filter dengan respons frekuensi yang relatif halus pada passband.
-- Chebyshev Type I: digunakan sebagai pembanding dengan karakteristik ripple pada passband.
+### 2. Analisis Frekuensi Dominan
+Menggunakan Fast Fourier Transform (FFT) untuk mengidentifikasi frekuensi dominan pada sinyal audio sebagai dasar penentuan parameter filter.
 
-3. Jenis Filter
-Setiap metode diterapkan pada dua jenis filter:
-- Low-pass filter: melewatkan frekuensi di bawah frekuensi cutoff dan meredam frekuensi yang lebih tinggi.
-- Band-pass filter: melewatkan rentang frekuensi tertentu dan meredam frekuensi di luar rentang tersebut.
+### 3. Penambahan Noise
+Menambahkan noise acak buatan ke sinyal audio untuk mensimulasikan kondisi sinyal yang terkontaminasi gangguan.
 
-**Tahapan Pengerjaan**
+### 4. Perancangan Filter Digital
 
-1. Memuat Sinyal Audio
-Membaca file audio dan mengambil informasi sampling rate. Jika audio memiliki dua kanal, sinyal dikonversi menjadi mono.
-2. Analisis Frekuensi Dominan
-Menggunakan FFT untuk mengidentifikasi frekuensi dominan pada sinyal audio.
-3. Penambahan Noise
-Menambahkan noise acak pada sinyal audio untuk membentuk sinyal yang akan diuji dalam proses filtering.
-4. Penentuan Parameter Filter
-Menentukan frekuensi cutoff untuk low-pass serta rentang frekuensi untuk band-pass.
-5. Perancangan Filter FIR dan IIR
-Membuat filter FIR dengan window Hamming dan Blackman serta filter IIR dengan metode Butterworth dan Chebyshev Type I.
-6. Proses Filtering
-Menerapkan filter pada sinyal audio yang telah diberi noise.
-7. Penyimpanan Hasil Audio
-Menyimpan hasil filtering dari setiap metode ke dalam file audio terpisah.
-8. Visualisasi dan Evaluasi
-Membandingkan sinyal dalam domain waktu, spektrum FFT, respons frekuensi, serta nilai SNR, RMS, dan spectral centroid.
+Dua jenis filter digunakan:
 
-**Konteks Akademik**
+**FIR (Finite Impulse Response)**
+- Hamming Window
+- Blackman Window
 
+**IIR (Infinite Impulse Response)**
+- Butterworth
+- Chebyshev Type I
+
+Setiap metode diuji menggunakan konfigurasi low-pass dan band-pass.
+
+### 5. Proses Filtering
+Menerapkan filter pada sinyal audio yang telah diberi noise, kemudian menyimpan hasil pengolahan untuk dibandingkan dengan sinyal awal dan sinyal noisy.
+
+### 6. Evaluasi dan Visualisasi
+Evaluasi dilakukan menggunakan:
+- **SNR:** mengukur perbandingan sinyal acuan dengan noise atau galat hasil filtering.
+- **RMS:** mengukur besarnya amplitudo efektif sinyal.
+- **Spectral centroid:** menggambarkan pusat distribusi energi spektrum frekuensi.
+- **FFT:** membandingkan karakteristik spektrum sebelum dan sesudah filtering.
+- **Respons frekuensi:** mengamati karakteristik magnitudo dan fase filter.
+- **Audio playback:** mendengarkan hasil filtering untuk membandingkan kualitas suara secara subjektif.
+
+## Hasil dan Pembahasan
+
+Berdasarkan hasil eksekusi notebook, sinyal audio awal memiliki sampling rate sebesar 48.000 Hz dan frekuensi dominan sekitar 507,10 Hz. Noise acak kemudian ditambahkan sebelum proses filtering.
+
+Hasil pengukuran SNR pada notebook adalah sebagai berikut:
+
+| Metode | SNR (dB) |
+|---|---:|
+| Sinyal noisy | 3,93 |
+| FIR Low-Pass (Hamming) | 6,68 |
+| FIR Band-Pass (Hamming) | 3,34 |
+| FIR Low-Pass (Blackman) | 6,66 |
+| FIR Band-Pass (Blackman) | 4,25 |
+| IIR Low-Pass (Butterworth) | 8,26 |
+| IIR Band-Pass (Butterworth) | 2,47 |
+| IIR Low-Pass (Chebyshev) | 8,39 |
+| IIR Band-Pass (Chebyshev) | 2,27 |
+
+Pada konfigurasi dan data uji tersebut, filter **IIR Low-Pass Chebyshev** menghasilkan SNR tertinggi sebesar 8,39 dB, diikuti IIR Low-Pass Butterworth sebesar 8,26 dB. Kedua hasil tersebut lebih tinggi daripada SNR sinyal noisy sebesar 3,93 dB.
+
+Namun, hasil tersebut tidak berarti bahwa Chebyshev selalu menjadi filter terbaik untuk semua sinyal audio. Kualitas akhir tetap perlu mempertimbangkan karakteristik respons frekuensi, perubahan spektrum, dan hasil pendengaran audio.
+
+## Konteks Akademik
+
+Program Studi S1 Sains Data  
+Fakultas Matematika dan Ilmu Pengetahuan Alam  
+Universitas Negeri Surabaya
 Mata Kuliah: Pengolahan Sinyal Digital
-Proyek: Kelompok 8
-
-**Catatan**
-Proyek ini disusun untuk keperluan pembelajaran dan eksperimen pengolahan sinyal digital. Hasil filtering dapat berbeda bergantung pada karakteristik audio, sampling rate, parameter filter, dan tingkat noise yang digunakan.
